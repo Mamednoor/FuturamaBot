@@ -11,7 +11,6 @@ const wwoApiKey = "8c0934b660db4d6a92b135511202007";
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((req, res) => {
   // Get the city and date from the request
-  console.log('test method', req.method)
   console.log('test body:' + JSON.stringify(req.body))
   let city = req.body.queryResult.parameters['geo-city']; // city is a required param
   // Get the date for the weather forecast (if present)
