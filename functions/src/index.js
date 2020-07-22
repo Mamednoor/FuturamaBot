@@ -29,8 +29,7 @@ function callWeatherApi(city, date) {
         // Create response
         const output = `Current conditions in the ${location.type} 
         ${location.query} are ${currentConditions} with a projected high of
-        ${forecast.maxtempC}°C and a low of 
-        ${forecast.mintempC}°C on ${forecast.date}.`;
+        ${forecast.maxtempC}°C and a low of ${forecast.mintempC}°C on ${forecast.date}.`;
 
         // Resolve the promise with the output text
         resolve(output);
@@ -45,7 +44,7 @@ function callWeatherApi(city, date) {
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((req, res) => {
   // Get the city and date from the request
   // console.log(`test body:${JSON.stringify(req.body)}`);
-  const city = req.body.queryResult.parameters['geo-city']; // city is a required param
+  const city = req.body.queryResult.parameters['geo-city'];
   // Get the date for the weather forecast (if present)
   let date = '';
   if (req.body.queryResult.parameters.date) {
@@ -56,6 +55,6 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((req, res) => 
   callWeatherApi(city, date)
     .then((output) => res.json({ fulfillmentText: output }))
     .catch(() => {
-      res.send({ fulfillmentText: 'I don\'t know the weather but I hope it\'s good!' });
+      res.json({ fulfillmentText: `Je ne connais pas la météo à ${city}` });
     });
 });
