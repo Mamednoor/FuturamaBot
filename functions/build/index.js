@@ -40,13 +40,13 @@ function callWeatherApi(city, date) {
 }
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((req, res) => {
-  // console.log(`test body:${JSON.stringify(req.body)}`);
-  const city = req.body.queryResult.parameters['geo-city']; // Get the date for the weather forecast (if present)
+  const fetchParameters = req.body.queryResult.parameters; // console.log(`test body:${JSON.stringify(req.body)}`);
 
+  const city = fetchParameters['geo-city'];
   let date = '';
 
-  if (req.body.queryResult.parameters.date) {
-    date = req.body.queryResult.parameters.date;
+  if (fetchParameters.date) {
+    date = fetchParameters.date;
   } // Call the weather API
 
 
