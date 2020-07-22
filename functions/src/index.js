@@ -1,6 +1,5 @@
 // @flow
 
-require('dotenv').config();
 const http = require('http');
 const functions = require('firebase-functions');
 const admin = require('firebase-admin');
@@ -8,7 +7,7 @@ const admin = require('firebase-admin');
 admin.initializeApp();
 
 const host = 'api.worldweatheronline.com';
-const wwoApiKey = 'APIKEY';
+const wwoApiKey = '8c0934b660db4d6a92b135511202007';
 
 function callWeatherApi(city, date) {
   return new Promise((resolve, reject) => {
@@ -19,14 +18,13 @@ function callWeatherApi(city, date) {
       res.on('data', (d) => {
         body += d;
       });
+
       res.on('end', () => {
         const response = JSON.parse(body);
 
-        if (response.data.error) {
-          return reject(new Error('Fail to call weather API'));
-        }
-
-        console.log('test response', response);
+        // if (response.data.error) {
+        //   return reject(new Error('Fail to call weather API'));
+        // }
         const forecast = response.data.weather[0];
         const location = response.data.request[0];
         const conditions = response.data.current_condition[0];
@@ -37,6 +35,7 @@ function callWeatherApi(city, date) {
 
         resolve(output);
       });
+
       res.on('error', (error) => {
         reject(error);
       });
@@ -46,20 +45,20 @@ function callWeatherApi(city, date) {
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest(
   (req, res) => {
+    const fetchParameters = req.body.queryResult.parameters;
     // console.log(`test body:${JSON.stringify(req.body)}`);
-    const city = req.body.queryResult.parameters['geo-city'];
+    const city = fetchParameters['geo-city'];
 
-    // Get the date for the weather forecast (if present)
     let date = '';
-    if (req.body.queryResult.parameters.date) {
-      date = req.body.queryResult.parameters.date;
+    if (fetchParameters.date) {
+      date = fetchParameters.date;
     }
 
     // Call the weather API
     callWeatherApi(city, date)
       .then((output) => res.json({ fulfillmentText: output }))
       .catch(() => {
-        res.json({ fulfillmentText: `Je ne connais pas la météo à ${city}` });
+        res.json({ fulfillmentText: `i don/'t know the weather in ${city}` });
       });
-  }
+  },
 );
