@@ -1,33 +1,32 @@
 // @flow
 
-const http = require("http");
-const functions = require("firebase-functions");
-const admin = require("firebase-admin");
+require('dotenv').config();
+const http = require('http');
+const functions = require('firebase-functions');
+const admin = require('firebase-admin');
 
 admin.initializeApp();
 
-const host = "api.worldweatheronline.com";
-const wwoApiKey = "8c0934b660db4d6a92b135511202007";
+const host = 'api.worldweatheronline.com';
+const wwoApiKey = 'APIKEY';
 
 function callWeatherApi(city, date) {
   return new Promise((resolve, reject) => {
-    const path = `/premium/v1/weather.ashx?key=${wwoApiKey}&format=json&num_of_days=1&q=${encodeURIComponent(
-      city
-    )}&date=${date}`;
+    const path = `/premium/v1/weather.ashx?key=${wwoApiKey}&format=json&num_of_days=1&q=${encodeURIComponent(city)}&date=${date}`;
 
     http.get({ host, path }, (res) => {
-      let body = "";
-      res.on("data", (d) => {
+      let body = '';
+      res.on('data', (d) => {
         body += d;
       });
-      res.on("end", () => {
+      res.on('end', () => {
         const response = JSON.parse(body);
 
         if (response.data.error) {
-          return reject(new Error("Fail to call weather API"))
+          return reject(new Error('Fail to call weather API'));
         }
-        
-        console.log("test response", response)
+
+        console.log('test response', response);
         const forecast = response.data.weather[0];
         const location = response.data.request[0];
         const conditions = response.data.current_condition[0];
@@ -38,7 +37,7 @@ function callWeatherApi(city, date) {
 
         resolve(output);
       });
-      res.on("error", (error) => {
+      res.on('error', (error) => {
         reject(error);
       });
     });
@@ -48,10 +47,10 @@ function callWeatherApi(city, date) {
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest(
   (req, res) => {
     // console.log(`test body:${JSON.stringify(req.body)}`);
-    const city = req.body.queryResult.parameters["geo-city"];
+    const city = req.body.queryResult.parameters['geo-city'];
 
     // Get the date for the weather forecast (if present)
-    let date = "";
+    let date = '';
     if (req.body.queryResult.parameters.date) {
       date = req.body.queryResult.parameters.date;
     }
