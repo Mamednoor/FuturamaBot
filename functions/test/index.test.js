@@ -15,6 +15,7 @@ describe('test firebaseFunction', () => {
     const res = {
       json: (responseBody) => {
         console.log(responseBody);
+        expect(responseBody).to.be(200);
         expect(responseBody).to.be.a('object');
         expect(responseBody.fulfillmentText).to.be.a('string');
         const expectedTextCity = 'Condition in city of Paris';
