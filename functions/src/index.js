@@ -15,13 +15,9 @@ function callWeatherApi(city, date) {
 
     http.get({ host, path }, (res) => {
       let body = '';
-      res.on('data', (d) => {
-        body += d;
-      });
-
+      res.on('data', (d) => { body += d; });
       res.on('end', () => {
         const response = JSON.parse(body);
-
         // if (response.data.error) {
         //   return reject(new Error('Fail to call weather API'));
         // }
@@ -35,7 +31,6 @@ function callWeatherApi(city, date) {
 
         resolve(output);
       });
-
       res.on('error', (error) => {
         reject(error);
       });
@@ -43,22 +38,20 @@ function callWeatherApi(city, date) {
   });
 }
 
-exports.dialogflowFirebaseFulfillment = functions.https.onRequest(
-  (req, res) => {
-    const fetchParameters = req.body.queryResult.parameters;
-    // console.log(`test body:${JSON.stringify(req.body)}`);
-    const city = fetchParameters['geo-city'];
+exports.dialogflowFirebaseFulfillment = functions.https.onRequest((req, res) => {
+  const fetchParameters = req.body.queryResult.parameters;
+  // console.log(`test body:${JSON.stringify(req.body)}`);
+  const city = fetchParameters['geo-city'];
 
-    let date = '';
-    if (fetchParameters.date) {
-      date = fetchParameters.date;
-    }
+  let date = '';
+  if (fetchParameters.date) {
+    date = fetchParameters.date;
+  }
 
-    // Call the weather API
-    callWeatherApi(city, date)
-      .then((output) => res.json({ fulfillmentText: output }))
-      .catch(() => {
-        res.json({ fulfillmentText: `i don/'t know the weather in ${city}` });
-      });
-  },
-);
+  // Call the weather API
+  callWeatherApi(city, date)
+    .then((output) => res.json({ fulfillmentText: output }))
+    .catch(() => {
+      res.json({ fulfillmentText: `i don/'t know the weather in ${city}` });
+    });
+});

@@ -1,8 +1,8 @@
-const { dialogflowFirebaseFulfillment } = require('../src/index.js');
 const { expect } = require('chai');
+const { dialogflowFirebaseFulfillment } = require('../src/index.js');
 
 describe('test firebaseFunction', () => {
-  it('citytest', () => {
+  it('Realcity', () => {
     const req = {
       body: {
         queryResult: {
@@ -24,7 +24,7 @@ describe('test firebaseFunction', () => {
     };
     dialogflowFirebaseFulfillment(req, res);
   });
-  it('citytest', () => {
+  it('Falsecity', () => {
     const req = {
       body: {
         queryResult: {
