@@ -24,6 +24,7 @@ function callWeatherApi(city, date) {
         // }
 
         const forecast = response.data.weather[0];
+        // console.log('forecast', forecast);
         const location = response.data.request[0];
         const conditions = response.data.current_condition[0];
         const currentConditions = conditions.weatherDesc[0].value;
@@ -33,9 +34,7 @@ function callWeatherApi(city, date) {
 
         resolve(output);
       });
-      res.on('error', (error) => {
-        reject(error);
-      });
+      res.on('error', (error) => reject(error));
     });
   });
 }
