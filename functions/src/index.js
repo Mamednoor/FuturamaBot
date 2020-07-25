@@ -18,9 +18,11 @@ function callWeatherApi(city, date) {
       res.on('data', (d) => { body += d; });
       res.on('end', () => {
         const response = JSON.parse(body);
+
         // if (response.data.error) {
         //   return reject(new Error('Fail to call weather API'));
         // }
+
         const forecast = response.data.weather[0];
         const location = response.data.request[0];
         const conditions = response.data.current_condition[0];
@@ -42,7 +44,6 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((req, res) => 
   const fetchParameters = req.body.queryResult.parameters;
   // console.log(`test body:${JSON.stringify(req.body)}`);
   const city = fetchParameters['geo-city'];
-
   let date = '';
   if (fetchParameters.date) {
     date = fetchParameters.date;
@@ -52,6 +53,6 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((req, res) => 
   callWeatherApi(city, date)
     .then((output) => res.json({ fulfillmentText: output }))
     .catch(() => {
-      res.json({ fulfillmentText: `i don/'t know the weather in ${city}` });
+      res.json({ fulfillmentText: 'i don\'t know what you mean' });
     });
 });
