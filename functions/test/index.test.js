@@ -17,10 +17,12 @@ describe('test firebaseFunction', () => {
       json: (data) => {
         expect(data).to.be.a('object');
         expect(data.fulfillmentText).to.be.a('string');
-        console.log('data test', data);
-        // expect(data.location).to.equal(true);
         expect(data.fulfillmentText).to.contain('Condition in city of Paris');
+        expect(req.body).to.be.a('object');
+        expect(req.body.queryResult.parameters['geo-city']).to.be.a('string');
+        expect(req.body.queryResult.parameters.date).to.be.a('string');
         // expect(data.fulfillmentText).to.contain('i don\'t know what you mean');
+        // console.log('data test', req.body);
         // console.log('error console', data.error);
         done();
       },
