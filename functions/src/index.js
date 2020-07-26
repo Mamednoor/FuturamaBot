@@ -31,7 +31,7 @@ function callWeatherApi(city, date) {
 
         const output = `Condition in city of ${location.query} are ${currentConditions} 
         with a projected high of ${forecast.maxtempC}°C and a low ${forecast.mintempC}°C on ${forecast.date}.`;
-
+        console.log(JSON.stringify(forecast));
         resolve(output);
       });
       res.on('error', (error) => reject(error));

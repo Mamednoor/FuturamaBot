@@ -17,7 +17,7 @@ describe('test firebaseFunction', () => {
       json: (data) => {
         expect(data).to.be.a('object');
         expect(data.fulfillmentText).to.be.a('string');
-        // console.log('data test', data);
+        console.log('data test', data);
         // expect(data.location).to.equal(true);
         expect(data.fulfillmentText).to.contain('Condition in city of Paris');
         // expect(data.fulfillmentText).to.contain('i don\'t know what you mean');
