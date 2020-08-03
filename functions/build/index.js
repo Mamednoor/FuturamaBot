@@ -1,3 +1,4 @@
+// @Flow
 const http = require('http');
 
 const functions = require('firebase-functions');
@@ -5,56 +6,49 @@ const functions = require('firebase-functions');
 const admin = require('firebase-admin');
 
 admin.initializeApp();
-const host = 'api.worldweatheronline.com';
-const wwoApiKey = '8c0934b660db4d6a92b135511202007';
+/**
+* @param {Object} options JSON configuration.
+* @param {Object} options.req HTTP request object.
+* @param {Object} options.res HTTP response object.
+* @param {Array} characters get the character
+* @return {promise} Promise
+*/
 
-function callWeatherApi(city, date) {
-  return new Promise((resolve, reject) => {
-    const path = `/premium/v1/weather.ashx?key=${wwoApiKey}&format=json&num_of_days=1&q=${encodeURIComponent(city)}&date=${date}`;
-    http.get({
-      host,
-      path
-    }, res => {
-      let body = '';
-      res.on('data', d => {
-        body += d;
-      });
-      res.on('end', () => {
-        const response = JSON.parse(body); // if (response.data.error) {
-        //   return reject(new Error('Fail to call weather API'));
-        // }
-
-        const forecast = response.data.weather[0]; // console.log('forecast', forecast);
-
-        const location = response.data.request[0];
-        const conditions = response.data.current_condition[0];
-        const currentConditions = conditions.weatherDesc[0].value;
-        const output = `Condition in city of ${location.query} are ${currentConditions} 
-        with a projected high of ${forecast.maxtempC}°C and a low ${forecast.mintempC}°C on ${forecast.date}.`; // console.log(JSON.stringify(forecast));
-
-        resolve(output);
-      });
-      res.on('error', error => reject(error));
+const getAPI = character => new Promise((resolve, reject) => {
+  const host = `futuramaapi.herokuapp.com/api/characters/${character}/1`;
+  http.get(host, res => {
+    let body = '';
+    res.on('data', d => {
+      body += d;
+    });
+    res.on('end', () => {
+      // console.log('body ', body);
+      // console.log('Dialogflow body: ', JSON.stringify(body));
+      const apiResponse = JSON.parse(body);
+      const characters = apiResponse.data.request[0];
+      const quotes = apiResponse.data[0].quote;
+      const output = `test ${characters} ${quotes} `;
+      return resolve(output);
+    });
+    res.on('error', error => {
+      reject(error);
     });
   });
-}
+});
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((req, res) => {
-  const fetchParameters = req.body.queryResult.parameters; // console.log(`test body:${JSON.stringify(req.body)}`);
+  console.log('Req body: ', JSON.stringify(req.body));
+  const Params = req.body.queryResult.parameters;
+  const character = Params['last-name']; // console.log('character: ', JSON.stringify(character));
 
-  const city = fetchParameters['geo-city'];
-  let date = '';
-
-  if (fetchParameters.date) {
-    date = fetchParameters.date;
-  } // Call the weather API
-
-
-  callWeatherApi(city, date).then(output => res.json({
-    fulfillmentText: output
-  })).catch(() => {
+  getAPI(character).then(output => {
+    res.setHeader('Content-Type', 'application/json');
     res.json({
-      fulfillmentText: 'i don\'t know what you mean'
+      fulfillmentText: output
+    });
+  }).catch(() => {
+    res.json({
+      fulfillmentText: 'i don\'t understand can you repeat please'
     });
   });
 });

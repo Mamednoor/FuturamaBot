@@ -1,11 +1,16 @@
-POST http://localhost:5001/chatbot-weather-psfyhe/us-central1/dialogflowFirebaseFulfillment
+###
+POST http://localhost:5001/futurama-chatbot/us-central1/dialogflowFirebaseFulfillment
 Content-Type: application/json
 
 {
   "queryResult": {
     "parameters": {
-      "geo-city": "Washington",
-      "date": "2020-07-22"
-    }
-  }
+      "character": "bender",
+      // quote: 'At last, war has made me into a man. Weeeeee!',
+    },
+  },
 }
+
+###
+GET futuramaapi.herokuapp.com/api/characters/bender/1
+Content-Type: application/json

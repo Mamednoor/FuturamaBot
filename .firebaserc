@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "chatbot-weather-psfyhe"
+    "default": "futurama-chatbot",
+    "futurama-chatbot": "futurama-chatbot"
   }
 }
