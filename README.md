@@ -19,9 +19,16 @@ Robot Mob, Giant Bender, Kif, Don bot.
 
 ----------------  
 
+## Files
+* src/index-flow.js: Webhook written with flow
+* build/index.js: Compiled webhook code uploaded on Google Cloud Platform, which call Futurama
+* test/index.test.js: Unit tests which uses client to call the chatbot
+
+----------------  
+
 ## Code coverage  
 
-According to Istanbul and nyc, here is the code coverage:  
+According to [Istanbul](https://istanbul.js.org/) and nyc, here is the code coverage:  
 
 File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ----------|---------|----------|---------|---------|-------------------
@@ -32,7 +39,7 @@ All files |   96.67 |      100 |   88.89 |   96.43 |
 
 ## Testing the chatbot  
 
-You can test the chatbot online via [this link](https://bot.dialogflow.com/FuturamaBot)  
+Let try the chatbot online => [this link](https://bot.dialogflow.com/FuturamaBot)  
 
 ## Troubleshooting  
 
@@ -43,3 +50,6 @@ Sometimes, the webhook returns a timeout. It might be due to the internet connec
 * Firebase  
 * Dialogflow
 * Api : <https://futuramaapi.herokuapp.com/>  
+* [flow](https://flow.org/)
+* [chai](https://www.chaijs.com/)
+* [eslint](https://eslint.org/)

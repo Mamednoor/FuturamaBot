@@ -30,7 +30,7 @@ const getAPI = (character) => new Promise((resolve, reject) => {
       const quotes: string = apiResponse[0].quote;
       // const images: string = apiResponse[0].image;
 
-      const output = `Let ${characters} tell you his quote : ${quotes}`;
+      const output = `Let ${characters} tell you a quote : ${quotes}`;
       return resolve(output);
     });
     res.on('error', (error) => {
