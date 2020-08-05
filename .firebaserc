@@ -1,6 +1,5 @@
 {
   "projects": {
-    "default": "futurama-chatbot",
-    "futurama-chatbot": "futurama-chatbot"
+    "default": "futuramabot-f71d0"
   }
 }
