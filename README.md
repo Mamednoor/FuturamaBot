@@ -19,9 +19,8 @@ Try the bot at this link <https://bot.dialogflow.com/FuturamaBot>
 
 ----------------  
 
-## Files  
-
-* src/index-flow.js: Webhook written with flow
+## Files
+* src/index.js: Webhook written with flow
 * build/index.js: Compiled webhook code uploaded on Google Cloud Platform, which call Futurama
 * test/index.test.js: Unit tests which uses client to call the chatbot
 
