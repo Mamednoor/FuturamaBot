@@ -3,7 +3,7 @@
 ----------------  
 ## Description  
 
-Implements a chatbot which is able to give you quotes for a character in the anime Futurama.  
+Implements a chatbot which is able to give you a random quote for a character in the anime Futurama.  
 
 ----------------
 
