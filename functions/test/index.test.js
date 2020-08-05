@@ -7,7 +7,7 @@ describe('test firebaseFunction', () => {
       body: {
         queryResult: {
           parameters: {
-            'last-name': 'Bender',
+            'last-name': 'Professor-Farnsworth',
             // quote: 'At last, war has made me into a man. Weeeeee!',
           },
         },
