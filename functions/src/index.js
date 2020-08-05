@@ -23,7 +23,7 @@ const getAPI = (character) => new Promise((resolve, reject) => {
     res.on('data', (d) => { body += d; });
 
     res.on('end', () => {
-      console.log('body ', body);
+      // console.log('body ', body);
       // console.log('Dialogflow body: ', JSON.stringify(body));
       const apiResponse = JSON.parse(body);
       const characters: string = apiResponse[0].character;
