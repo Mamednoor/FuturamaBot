@@ -1,11 +1,9 @@
 # Technical test for CallDesk
 
-----------------  
 ## Description  
 
 Implements a chatbot which is able to give you a random quote for a character in the anime Futurama.  
 
-----------------
 
 ## Chatbot request samples  
 
