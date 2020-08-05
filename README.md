@@ -18,7 +18,7 @@ Robot-Mob, Giant-Bender, Don-bot, Professor-Farnsworth.   -->
 ----------------  
 
 ## Files
-* src/index-flow.js: Webhook written with flow
+* src/index: Webhook written with flow
 * build/index.js: Compiled webhook code uploaded on Google Cloud Platform, which call Futurama
 * test/index.test.js: Unit tests which uses client to call the chatbot
 
