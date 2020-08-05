@@ -15,9 +15,12 @@ Bender, Fry, Leela, Amy, Kif, Lurr, Linda, Hermes, Mom.
 <!-- Dr-Zoidberg,Zapp-Brannigan, the-reporter, Bob-Barker, Morgan-Proctor,  
 Robot-Mob, Giant-Bender, Don-bot, Professor-Farnsworth.   -->
 
+Try the bot at this link <https://bot.dialogflow.com/FuturamaBot>
+
 ----------------  
 
-## Files
+## Files  
+
 * src/index-flow.js: Webhook written with flow
 * build/index.js: Compiled webhook code uploaded on Google Cloud Platform, which call Futurama
 * test/index.test.js: Unit tests which uses client to call the chatbot
