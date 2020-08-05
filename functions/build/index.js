@@ -1,4 +1,3 @@
-// @Flow
 const http = require('http');
 
 const functions = require('firebase-functions');
@@ -14,20 +13,26 @@ admin.initializeApp();
 * @return {promise} Promise
 */
 
+const host = 'futuramaapi.herokuapp.com';
+
 const getAPI = character => new Promise((resolve, reject) => {
-  const host = `futuramaapi.herokuapp.com/api/characters/${character}/1`;
-  http.get(host, res => {
+  const path = `/api/characters/${character}/1`;
+  http.get({
+    host,
+    path
+  }, res => {
     let body = '';
     res.on('data', d => {
       body += d;
     });
     res.on('end', () => {
-      // console.log('body ', body);
-      // console.log('Dialogflow body: ', JSON.stringify(body));
+      console.log('body ', body); // console.log('Dialogflow body: ', JSON.stringify(body));
+
       const apiResponse = JSON.parse(body);
-      const characters = apiResponse.data.request[0];
-      const quotes = apiResponse.data[0].quote;
-      const output = `test ${characters} ${quotes} `;
+      const characters = apiResponse[0].character;
+      const quotes = apiResponse[0].quote; // const images: string = apiResponse[0].image;
+
+      const output = `Let ${characters} tell you his quote : ${quotes}`;
       return resolve(output);
     });
     res.on('error', error => {
@@ -39,10 +44,10 @@ const getAPI = character => new Promise((resolve, reject) => {
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((req, res) => {
   console.log('Req body: ', JSON.stringify(req.body));
   const Params = req.body.queryResult.parameters;
-  const character = Params['last-name']; // console.log('character: ', JSON.stringify(character));
-
+  const character = Params['last-name'];
+  console.log('character: ', character);
   getAPI(character).then(output => {
-    res.setHeader('Content-Type', 'application/json');
+    // res.setHeader('Content-Type', 'application/json');
     res.json({
       fulfillmentText: output
     });
