@@ -37,7 +37,7 @@ All files |   96.67 |      100 |   88.89 |   96.43 |
 
 ## Testing the chatbot  
 
-Let try the chatbot online => [this link](https://bot.dialogflow.com/FuturamaBot)  
+Try the chatbot online => [this link](https://bot.dialogflow.com/FuturamaBot)  
 Sometimes, the webhook returns a timeout. It might be due to the internet connection.
 
 ## Tools  
