@@ -34,7 +34,7 @@ All files |   96.67 |      100 |   88.89 |   96.43 |
 
 ## Testing the chatbot  
 
-You can test the chatbot online via [this link](https://bot.dialogflow.com/futuramabot)  
+You can test the chatbot online via [this link](https://bot.dialogflow.com/FuturamaBot)  
 
 ## Troubleshooting  
 
