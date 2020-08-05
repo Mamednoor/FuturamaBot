@@ -13,9 +13,9 @@ Implements a chatbot which is able to give you a random quote for a character in
 * Tell me a quote of {Characters} ?  
 
 * List of Characters :  
-Bender, Fry, Leela, Professor Farnsworth, Amy, Zapp Brannigan, Lurr,
-Dr Zoidberg, Linda, the reporter, Bob Barker, Hermes, Morgan Proctor, Mom,  
-Robot Mob, Giant Bender, Kif, Don bot.  
+Bender, Fry, Leela, Professor-Farnsworth, Amy, Zapp-Brannigan, Lurr,
+Dr-Zoidberg, Linda, the-reporter, Bob-Barker, Hermes, Morgan-Proctor, Mom,  
+Robot-Mob, Giant-Bender, Kif, Don-bot.  
 
 ----------------  
 
