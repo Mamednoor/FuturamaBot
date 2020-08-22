@@ -2,13 +2,13 @@
 
 ## Description  
 
-Implements a chatbot which is able to give you a random quote for a character in the anime Futurama.
+Implements a chatbot which is able to give you a random quote for a character in the anime Futurama.  
 Création d'un chatbot capable de nous donner une citation aléatoire d'un personnage du dessin animé Futurama.
 
 ## Chatbot request samples  / Exemple
 
-* Tell me a quote of Bender ?  / Dis moi une citation de Bender ?
-* Tell me a quote of {Characters} ?  / Raconte moi une citation de {personnage} ?  
+* Tell me a quote of Bender ? / Dis moi une citation de Bender ?  
+* Tell me a quote of {Characters} ? / Raconte moi une citation de {personnage} ?  
 
 * List of Characters / Liste de personnage:  
 Bender, Fry, Leela, Amy, Kif, Lurr, Hermes, Mom.  
@@ -28,7 +28,7 @@ Try the bot at this link <https://bot.dialogflow.com/FuturamaBot>
 
 ## Code coverage / Couverture du code par les TDD    
 
-According to [Istanbul](https://istanbul.js.org/) and nyc, here is the code coverage:
+According to [Istanbul](https://istanbul.js.org/) and nyc, here is the code coverage:  
 Utilisation de [Istanbul](https://istanbul.js.org/) et nyc, Voici le tableau de couverture:  
 
 File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
