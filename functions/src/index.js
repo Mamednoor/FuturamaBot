@@ -13,6 +13,7 @@ admin.initializeApp();
 * @param {Array} characters get the character
 * @return {promise} Promise
 */
+
 const host: string = 'futuramaapi.herokuapp.com';
 
 const getAPI = (character) => new Promise((resolve, reject) => {
@@ -23,8 +24,6 @@ const getAPI = (character) => new Promise((resolve, reject) => {
     res.on('data', (d) => { body += d; });
 
     res.on('end', () => {
-      // console.log('body ', body);
-      // console.log('Dialogflow body: ', JSON.stringify(body));
       const apiResponse = JSON.parse(body);
       const characters: string = apiResponse[0].character.replace(/\s/g, '-');
       const quotes: string = apiResponse[0].quote;
@@ -42,12 +41,11 @@ const getAPI = (character) => new Promise((resolve, reject) => {
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((req, res) => {
   console.log('Req body: ', JSON.stringify(req.body));
   const Params = req.body.queryResult.parameters;
-  const character = Params['last-name'];
+  const character = Params['last-name'] || Params['given-name'];
 
   console.log('character: ', character);
   getAPI(character)
     .then((output) => {
-      // res.setHeader('Content-Type', 'application/json');
       res.json({ fulfillmentText: output });
     }).catch(() => {
       res.json({ fulfillmentText: 'i don\'t understand can you repeat please' });

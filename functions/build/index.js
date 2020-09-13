@@ -26,8 +26,6 @@ const getAPI = character => new Promise((resolve, reject) => {
       body += d;
     });
     res.on('end', () => {
-      // console.log('body ', body);
-      // console.log('Dialogflow body: ', JSON.stringify(body));
       const apiResponse = JSON.parse(body);
       const characters = apiResponse[0].character.replace(/\s/g, '-');
       const quotes = apiResponse[0].quote; // const images: string = apiResponse[0].image;
@@ -47,7 +45,6 @@ exports.dialogflowFirebaseFulfillment = functions.https.onRequest((req, res) => 
   const character = Params['last-name'];
   console.log('character: ', character);
   getAPI(character).then(output => {
-    // res.setHeader('Content-Type', 'application/json');
     res.json({
       fulfillmentText: output
     });
