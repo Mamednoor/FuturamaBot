@@ -41,7 +41,7 @@ const getAPI = (character) => new Promise((resolve, reject) => {
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((req, res) => {
   console.log('Req body: ', JSON.stringify(req.body));
   const Params = req.body.queryResult.parameters;
-  const character = Params['last-name'] || Params['given-name'].replace(/\s/g, '-');
+  const character = Params['last-name'].replace(/\s/g, '-') || Params['given-name'].replace(/\s/g, '-');
 
   console.log('character: ', character);
   getAPI(character)

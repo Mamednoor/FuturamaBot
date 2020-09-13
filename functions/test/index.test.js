@@ -2,13 +2,12 @@ const { expect } = require('chai');
 const { dialogflowFirebaseFulfillment } = require('../src/index.js');
 
 describe('test firebaseFunction', () => {
-  it('character', () => {
+  it('character last name', () => {
     const req = {
       body: {
         queryResult: {
           parameters: {
             'last-name': 'Leela',
-            // quote: 'At last, war has made me into a man. Weeeeee!',
           },
         },
       },
