@@ -26,7 +26,7 @@ const getAPI = (character) => new Promise((resolve, reject) => {
       // console.log('body ', body);
       // console.log('Dialogflow body: ', JSON.stringify(body));
       const apiResponse = JSON.parse(body);
-      const characters: string = apiResponse[0].character;
+      const characters: string = apiResponse[0].character.replace(/\s/g, '-');
       const quotes: string = apiResponse[0].quote;
       // const images: string = apiResponse[0].image;
 
