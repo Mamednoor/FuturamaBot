@@ -11,9 +11,9 @@ Création d'un chatbot capable de nous donner une citation aléatoire d'un perso
 * Tell me a quote of {Characters} ? / Raconte moi une citation de {personnage} ?  
 
 * List of Characters / Liste de personnage:  
-Bender, Fry, Leela, Amy, Kif, Lurr, Hermes, Mom.  
-<!-- Dr-Zoidberg,Zapp-Brannigan, the-reporter, Bob-Barker, Morgan-Proctor,  
-Robot-Mob, Giant-Bender, Don-bot, Professor-Farnsworth.   -->
+Bender, Fry, Leela, Amy, Kif, Lurr, Hermes, Mom, Dr Zoidberg, Zapp Brannigan, Professor Farnsworth. 
+<!-- Linda-the-reporter, Bob-Barker, Morgan-Proctor,  
+Robot-Mob, Giant-Bender, Don-bot.  -->
 
 Try the bot at this link <https://bot.dialogflow.com/FuturamaBot>
 
@@ -33,8 +33,8 @@ Utilisation de [Istanbul](https://istanbul.js.org/) et nyc, Voici le tableau de 
 
 File      | % Stmts | % Branch | % Funcs | % Lines | Uncovered Line #s 
 ----------|---------|----------|---------|---------|-------------------
-All files |   96.67 |      100 |   88.89 |   96.43 |                   
- index.js |   96.67 |      100 |   88.89 |   96.43 | 37                
+All files |   96.43 |      50  |   88.89 |   96.15 |                   
+ index.js |   96.43 |      50  |   88.89 |   96.15 | 36                
 
 ----------------  
 
