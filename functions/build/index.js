@@ -42,10 +42,10 @@ const getAPI = character => new Promise((resolve, reject) => {
 });
 
 exports.dialogflowFirebaseFulfillment = functions.https.onRequest((req, res) => {
-  // console.log('Req body: ', JSON.stringify(req.body));
+  console.log('Req body: ', JSON.stringify(req.body));
   const Params = req.body.queryResult.parameters;
-  const character = Params['last-name']; // console.log('character: ', character);
-
+  const character = Params['given-name'];
+  console.log('character: ', character);
   getAPI(character).then(output => {
     // res.setHeader('Content-Type', 'application/json');
     res.json({
