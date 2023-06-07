@@ -19,7 +19,7 @@
     "dialogflow": "^1.2.0",
     "dialogflow-fulfillment": "^0.6.1",
     "dotenv": "^8.2.0",
-    "firebase-admin": "^9.0.0",
+    "firebase-admin": "^11.4.1",
     "firebase-functions": "^3.9.0",
     "get-json": "^1.0.1",
     "serialize-javascript": "^4.0.0"
